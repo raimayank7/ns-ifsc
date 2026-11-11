@@ -16,6 +16,7 @@
     var bank4 = code.slice(0, 4);
     if (!ix.old || !ix.old[bank4]) { otherwise(); return; }
     return N.json(BASE + '/data/old/' + bank4 + '.json').then(function (j) {
+      if (!j) { otherwise(); return; }
       var r = j[code.slice(4)];
       if (!r) { otherwise(); return; }
       var ev = r[0] >= 0 ? ix.ev[r[0]] : null, last = r[6] ? MON[+r[6].slice(5, 7) - 1] + ' ' + r[6].slice(0, 4) : '';
@@ -68,7 +69,7 @@
         N.recent('nsl-ifsc', { u: code, t: b[0] + ', ' + r[1] });
         recent();
       });
-    }).catch(function () { say('<h2>The data did not load</h2><p>Check your internet connection and press Check again.</p>'); });
+    }).catch(function () { say('<h2>The data did not load</h2><p>Check your internet connection and press Check again. If your connection is fine, the source website (ifsc.shareyourgroup.com) may be busy for a moment: try again in a minute.</p>'); });
   }
   function recent() {
     var box = $('[data-recent]'), list = N.recent('nsl-ifsc');
