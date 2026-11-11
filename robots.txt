@@ -1,4 +1,2 @@
 User-agent: *
 Allow: /
-
-Sitemap: https://ifsc.niveshsahayak.in/sitemap.xml
